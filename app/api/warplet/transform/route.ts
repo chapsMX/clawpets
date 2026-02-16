@@ -73,7 +73,8 @@ export async function POST(req: Request) {
         fid: record.fid,
         cid: record.cid,
         gatewayUrl: record.gatewayUrl,
-        createdAt: record.createdAt,
+        imageUrl: record.imageUrl,
+        createdAt: record.createdAt.toISOString(),
       },
       { status: 200 }
     );

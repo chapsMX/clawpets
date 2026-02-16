@@ -163,6 +163,14 @@ export default function Home() {
         }
       } catch (error) {
         console.error("[status] fetch failed", error);
+        // Set default status on error to allow transform if warpletImage exists
+        setWarpletStatus({
+          fid: userFid,
+          hasTransformed: false,
+          hasMinted: false,
+          transform: null,
+          owner: null,
+        });
       } finally {
         setIsStatusLoading(false);
       }
@@ -228,9 +236,11 @@ export default function Home() {
   }, [mintedTokenId, userFid]);
   const canTransform =
     Boolean(warpletImage) &&
+    !warpletError &&
     !warpletStatus?.hasTransformed &&
     !warpletStatus?.hasMinted &&
-    !isTransforming;
+    !isTransforming &&
+    !isStatusLoading;
   const canMint =
     Boolean(address && transformedCid) &&
     !warpletStatus?.hasMinted &&
@@ -243,8 +253,13 @@ export default function Home() {
       address,
       transformedCid,
       canMint,
+      canTransform,
+      warpletImage: warpletImage ? "exists" : "null",
+      hasTransformed: warpletStatus?.hasTransformed,
+      hasMinted: warpletStatus?.hasMinted,
+      isTransforming,
     });
-  }, [warpletStatus, address, transformedCid, canMint, userFid]);
+  }, [warpletStatus, address, transformedCid, canMint, canTransform, userFid, warpletImage, isTransforming]);
 
   const transactionCalls = useMemo(() => {
     return async () => {
@@ -499,8 +514,14 @@ export default function Home() {
       } catch (error) {
         console.error("[warplet] fetch failed", error);
         if (!cancelled) {
-          setWarpletImage(null);
-          setWarpletError(`No Warplet found for FID ${fid}`);
+          const errorMessage = error instanceof Error ? error.message : "Unknown error";
+          if (errorMessage.includes("404") || errorMessage.includes("No Warplet")) {
+            setWarpletImage(null);
+            setWarpletError(`No Warplet found for FID ${fid}`);
+          } else {
+            // For other errors, still set error but don't clear warpletImage if it was previously set
+            setWarpletError(`Failed to load Warplet: ${errorMessage}`);
+          }
         }
       }
     })();

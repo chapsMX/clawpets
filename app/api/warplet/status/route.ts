@@ -38,7 +38,7 @@ export async function GET(req: Request) {
               cid: transform.cid,
               gatewayUrl: transform.gatewayUrl,
               imageUrl: transform.imageUrl,
-              createdAt: transform.createdAt,
+              createdAt: transform.createdAt.toISOString(),
             }
           : null,
         hasMinted: mint.hasMinted,
