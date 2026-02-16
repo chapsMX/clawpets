@@ -1,6 +1,6 @@
-## 🧶 Crochet Warplets
+## 🦞 Clawpets 🦞
 
-Crochet Warplets is a Farcaster Mini App that lets every user reinterpret their Warplet (NFT bound 1:1 to their fid) using AI, upload the new image to IPFS (Pinata), and mint it on Base. Current capabilities:
+🦞 Clawpets 🦞 is a Farcaster Mini App that lets every user reinterpret their Warplet (NFT bound 1:1 to their fid) using AI, upload the new image to IPFS (Pinata), and mint it on Base. Current capabilities:
 
 - Automatically detect whether the visiting fid already owns the original Warplet.
 - Display the Warplet image plus basic profile info (username, pfp, fid).
@@ -29,7 +29,7 @@ Crochet Warplets is a Farcaster Mini App that lets every user reinterpret their 
 - **Pinata** – existing API uploads images and provides CID + gateway URL (reused for the AI output).
 - **Google Gemini** – forthcoming step to reinterpret the Warplet image before minting.
 - **Coinbase OnchainKit** – wallet connection, transaction orchestration, Mini App UX.
-- **Neon Postgres** – lightweight table `crochet_warplets` that tracks `{ fid, cid, gatewayUrl }` so each user can transform exactly once.
+- **Neon Postgres** – lightweight table `clawpet_warplets` that tracks `{ fid, cid, gatewayUrl }` so each user can transform exactly once.
 
 ---
 
@@ -39,7 +39,7 @@ Crochet Warplets is a Farcaster Mini App that lets every user reinterpret their 
 | -------- | ------- |
 | `GET /api/warplet/[fid]` | Reads the original Warplet NFT (Base mainnet), normalizes IPFS → HTTP, returns `{ tokenId, tokenUri, image }`. |
 | `GET /api/user/[fid]` | Neynar proxy returning `{ fid, username, pfpUrl }`. |
-| `POST /api/mint/sign` | Produces the EIP-191 signature required by `amgWarplets.mint`. Uses server envs (`VERIFIER_PRIVATE_KEY`, `CONTRACT_ADDRESS`, `CHAIN_ID`). |
+| `POST /api/mint/sign` | Produces the EIP-191 signature required by `clawpets.mint`. Uses server envs (`VERIFIER_PRIVATE_KEY`, `CONTRACT_ADDRESS`, `CHAIN_ID`). |
 | `POST /api/warplet/transform` | Validates fid, sends the Warplet image to Gemini, uploads the crochet result to Pinata, stores `{ fid, cid }` in Neon, and returns `{ cid, gatewayUrl }`. |
 | `GET /api/warplet/status` | Aggregates Neon + on-chain data to answer `hasTransformed`, `hasMinted`, `owner`. |
 | `POST /api/ipfs/upload-image` | JSON or multipart upload helper that pushes images to Pinata and returns `{ cid, gatewayUrl }`. |

@@ -31,7 +31,7 @@ export async function getWarpletTransform(
 ): Promise<WarpletTransformRecord | null> {
   const rows = (await sql`
     SELECT fid, cid, gateway_url, image_url, created_at
-    FROM clawpets
+    FROM clawpet_warplets
     WHERE fid = ${fid}
     LIMIT 1
   `) as WarpletTransformRow[];
