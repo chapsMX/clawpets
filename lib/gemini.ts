@@ -13,10 +13,10 @@ const MODEL_ID =
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // clawpet prompt
-const YARN_PROMPT = `crea una reinterpretación del warplet, el personaje principal de la imagen, en el que en lugar de brazos tenga tenazas de langosta, cambia los pies por patas de langosta y agrega una cola y antenas de langosta. manten el tamaño, formato, colores y estilo de la imagen original.`;
+// const YARN_PROMPT = `crea una reinterpretación del warplet, el personaje principal de la imagen, en el que en lugar de brazos tenga tenazas de langosta, cambia los pies por patas de langosta y agrega una cola y antenas de langosta. manten el tamaño, formato, colores y estilo de la imagen original.`;
 // crochet warplet prompt
- // const YARN_PROMPT = `Realiza una reinterpretación de la imagen proporcionada en una figura 3d de estambre hecha a mano tipo crochet, deberás respetar los rasgos, caracteristica física, colores, accesorios, tamaño y postura de la imagen original. La imagen final deberá ser realista, como si se tratara de una fotografía, elaborada en estambre grueso tejido en crochet y sin ningun tipo de contorno o linea que la defina para garantizar que se vea como una figura 3d heca de estambre, la escala de la imagen siempre sera 1:1`;
-
+// const YARN_PROMPT = `Realiza una reinterpretación de la imagen proporcionada en una figura 3d de estambre hecha a mano tipo crochet, deberás respetar los rasgos, caracteristica física, colores, accesorios, tamaño y postura de la imagen original. La imagen final deberá ser realista, como si se tratara de una fotografía, elaborada en estambre grueso tejido en crochet y sin ningun tipo de contorno o linea que la defina para garantizar que se vea como una figura 3d heca de estambre, la escala de la imagen siempre sera 1:1`;
+const YARN_PROMPT = `crea una reinterpretación del warplet, el personaje principal de la imagen, por un nuevo personaje con tenazas, patas, antenas y cola de langosta, manten el tamaño, formato, colores y estilo de la imagen original, la nueva imagen debera estar en formato 1:1 y no deberá haber brazos o piernas duplicadas.`;
 export async function generateYarnImageFromPart(
   imagePart: Part 
 ): Promise<{ data: string; mimeType: string }> {

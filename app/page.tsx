@@ -671,7 +671,7 @@ export default function Home() {
               Crocheted Warplet ready. Proceed to mint!
             </p>
           ) : null}
-          {warpletStatus?.hasMinted ? (
+          {warpletStatus?.hasMinted && warpletStatus?.hasTransformed ? (
             <>
               <div
                 style={{
@@ -737,7 +737,7 @@ export default function Home() {
               Transform your Warplet to enable minting.
             </p>
           ) : null}
-          {!warpletStatus?.hasMinted ? (
+          {!warpletStatus?.hasMinted && warpletStatus?.hasTransformed ? (
             <>
               <Transaction
                 calls={transactionCalls}
