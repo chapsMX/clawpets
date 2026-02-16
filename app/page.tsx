@@ -197,8 +197,18 @@ export default function Home() {
   }, [isMintModalOpen, handleMintModalClose]);
 
   useEffect(() => {
-    refreshStatus();
-  }, [refreshStatus, warpletImageReloadToken]);
+    if (userFid) {
+      refreshStatus();
+    }
+  }, [userFid, refreshStatus, warpletImageReloadToken]);
+  
+  // Also refresh status when warpletImage is successfully loaded
+  useEffect(() => {
+    if (userFid && warpletImage && !warpletError && warpletStatus === null) {
+      console.log("[ui] Warplet image loaded, refreshing status");
+      refreshStatus();
+    }
+  }, [userFid, warpletImage, warpletError, warpletStatus, refreshStatus]);
 
   useEffect(() => {
     if (!isTransforming && wasTransformingRef.current) {
@@ -234,11 +244,11 @@ export default function Home() {
     if (!tokenId) return null;
     return `${VIEW_TOKEN_BASE_URL}/${CONTRACT_ADDRESS}:${tokenId}`;
   }, [mintedTokenId, userFid]);
+  // canTransform: user has warplet image, hasn't transformed yet, hasn't minted, and not currently transforming
   const canTransform =
     Boolean(warpletImage) &&
     !warpletError &&
-    !warpletStatus?.hasTransformed &&
-    !warpletStatus?.hasMinted &&
+    (warpletStatus === null || (!warpletStatus.hasTransformed && !warpletStatus.hasMinted)) &&
     !isTransforming &&
     !isStatusLoading;
   const canMint =
@@ -255,11 +265,22 @@ export default function Home() {
       canMint,
       canTransform,
       warpletImage: warpletImage ? "exists" : "null",
+      warpletError,
       hasTransformed: warpletStatus?.hasTransformed,
       hasMinted: warpletStatus?.hasMinted,
       isTransforming,
+      isStatusLoading,
+      // Breakdown of canTransform condition
+      conditionBreakdown: {
+        hasWarpletImage: Boolean(warpletImage),
+        noWarpletError: !warpletError,
+        notTransformed: warpletStatus === null || !warpletStatus.hasTransformed,
+        notMinted: warpletStatus === null || !warpletStatus.hasMinted,
+        notTransforming: !isTransforming,
+        notLoading: !isStatusLoading,
+      },
     });
-  }, [warpletStatus, address, transformedCid, canMint, canTransform, userFid, warpletImage, isTransforming]);
+  }, [warpletStatus, address, transformedCid, canMint, canTransform, userFid, warpletImage, warpletError, isTransforming, isStatusLoading]);
 
   const transactionCalls = useMemo(() => {
     return async () => {

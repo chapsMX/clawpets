@@ -18,37 +18,43 @@ function parseFid(url: string) {
 export async function GET(req: Request) {
   try {
     const fid = parseFid(req.url);
+    console.log("[api/warplet/status] Fetching status for fid:", fid);
+    
     const [transform, mint] = await Promise.all([
       getWarpletTransform(fid),
       getMintStatus(fid),
     ]);
-    console.log("[api/warplet/status]", {
+    
+    const hasTransform = Boolean(transform);
+    const response = {
       fid,
-      hasTransform: Boolean(transform),
+      hasTransformed: hasTransform,
+      transform: transform
+        ? {
+            cid: transform.cid,
+            gatewayUrl: transform.gatewayUrl,
+            imageUrl: transform.imageUrl,
+            createdAt: transform.createdAt.toISOString(),
+          }
+        : null,
       hasMinted: mint.hasMinted,
       owner: mint.owner,
+    };
+    
+    console.log("[api/warplet/status] Response:", {
+      fid,
+      hasTransform,
+      hasTransformed: response.hasTransformed,
+      hasMinted: response.hasMinted,
+      owner: response.owner,
+      transformExists: Boolean(response.transform),
     });
 
-    return NextResponse.json(
-      {
-        fid,
-        hasTransformed: Boolean(transform),
-        transform: transform
-          ? {
-              cid: transform.cid,
-              gatewayUrl: transform.gatewayUrl,
-              imageUrl: transform.imageUrl,
-              createdAt: transform.createdAt.toISOString(),
-            }
-          : null,
-        hasMinted: mint.hasMinted,
-        owner: mint.owner,
-      },
-      { status: 200 }
-    );
+    return NextResponse.json(response, { status: 200 });
   } catch (err: unknown) {
     const message =
       err instanceof Error ? err.message : "Failed to fetch Warplet status";
+    console.error("[api/warplet/status] Error:", message, err);
     const status =
       message.includes("fid") || message.includes("required") ? 400 : 500;
     return NextResponse.json({ error: message }, { status });
