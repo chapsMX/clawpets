@@ -106,7 +106,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(APP_URL),
-    title: `Crochet Warplet #${fid}`,
+    title: `🦞 Clawpet #${fid}`,
     description: "Mint your own Clawpet based on your Farcaster Warplet 🚀",
     openGraph: {
       type: "website",
