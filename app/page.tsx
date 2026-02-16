@@ -244,11 +244,12 @@ export default function Home() {
     if (!tokenId) return null;
     return `${VIEW_TOKEN_BASE_URL}/${CONTRACT_ADDRESS}:${tokenId}`;
   }, [mintedTokenId, userFid]);
-  // canTransform: user has warplet image, hasn't transformed yet, hasn't minted, and not currently transforming
+  // canTransform: user has warplet image, hasn't transformed yet, and not currently transforming
+  // Note: hasMinted refers to the Clawpet NFT, not the original Warplet, so we don't check it here
   const canTransform =
     Boolean(warpletImage) &&
     !warpletError &&
-    (warpletStatus === null || (!warpletStatus.hasTransformed && !warpletStatus.hasMinted)) &&
+    (warpletStatus === null || !warpletStatus.hasTransformed) &&
     !isTransforming &&
     !isStatusLoading;
   const canMint =
@@ -275,9 +276,10 @@ export default function Home() {
         hasWarpletImage: Boolean(warpletImage),
         noWarpletError: !warpletError,
         notTransformed: warpletStatus === null || !warpletStatus.hasTransformed,
-        notMinted: warpletStatus === null || !warpletStatus.hasMinted,
         notTransforming: !isTransforming,
         notLoading: !isStatusLoading,
+        // Note: hasMinted refers to Clawpet NFT, not relevant for transform button
+        hasMintedClawpet: warpletStatus?.hasMinted ?? false,
       },
     });
   }, [warpletStatus, address, transformedCid, canMint, canTransform, userFid, warpletImage, warpletError, isTransforming, isStatusLoading]);
