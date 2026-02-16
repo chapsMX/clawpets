@@ -12,9 +12,10 @@ const MODEL_ID =
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-// const YARN_PROMPT = `Convierte la imagen en una figura 3d hecha a mano de estambre estilo amigurumi. La figura resultante deberá ser creada con estambre respetando todos los rasgos, características, caracteristicas faciales, colores, accesorios tamaño y postura original. La imagen final deberá ser en una relación 1:1, realista y el 100% de ella deberá estar elaborada en estambre.`;
-// const YARN_PROMPT = `Convert the provided image into a 3d handmade amigurumi. The final character must look like a plush toy crafted entirely with thick yarn and crochet techniques, dont use lines, vectors or shapes, just a toy made of yarn in an amigurimi style. Preserve all facial features, colors, proportions, accessories, and the original pose. The entire figure must be fully made of yarn, with visible crochet stitches and soft stuffing volume. Render the result in a 1:1 aspect ratio, highly realistic, as if the amigurumi were photographed in real life.`;
- const YARN_PROMPT = `Realiza una reinterpretación de la imagen proporcionada en una figura 3d de estambre hecha a mano tipo crochet, deberás respetar los rasgos, caracteristica física, colores, accesorios, tamaño y postura de la imagen original. La imagen final deberá ser realista, como si se tratara de una fotografía, elaborada en estambre grueso tejido en crochet y sin ningun tipo de contorno o linea que la defina para garantizar que se vea como una figura 3d heca de estambre, la escala de la imagen siempre sera 1:1`;
+// clawpet prompt
+const YARN_PROMPT = `crea una reinterpretación del warplet, el personaje principal de la imagen, en el que en lugar de brazos tenga tenazas de langosta, cambia los pies por patas de langosta y agrega una cola y antenas de langosta. manten el tamaño, formato, colores y estilo de la imagen original.`;
+// crochet warplet prompt
+ // const YARN_PROMPT = `Realiza una reinterpretación de la imagen proporcionada en una figura 3d de estambre hecha a mano tipo crochet, deberás respetar los rasgos, caracteristica física, colores, accesorios, tamaño y postura de la imagen original. La imagen final deberá ser realista, como si se tratara de una fotografía, elaborada en estambre grueso tejido en crochet y sin ningun tipo de contorno o linea que la defina para garantizar que se vea como una figura 3d heca de estambre, la escala de la imagen siempre sera 1:1`;
 
 export async function generateYarnImageFromPart(
   imagePart: Part 
