@@ -349,7 +349,7 @@ export default function Home() {
       try {
         const shareUrl = `${shareBaseUrl}/share-mint/${embedFid}`;
         const shareText =
-          `♻️ I just transformed my Warplet into Crochet Warplet #${displayTokenId} 🧶\n` +
+          `♻️ I just transformed my Warplet into a Clawpet #${displayTokenId} 🦞\n` +
           `Transform and mint yours! 🚀`;
         console.log("[share] invoking composeCast", {
           displayTokenId,
@@ -570,9 +570,9 @@ export default function Home() {
           <p style={{ marginTop: 0 }}>Loading Warplet...</p>
         ) : null}
 
-        <h1 className={styles.title} style={{ marginTop: 0 }}>🧶Crochet Warplets🧶</h1>
+        <h1 className={styles.title} style={{ marginTop: 0 }}>🦞 Clawpets 🦞</h1>
         <p style={{ marginTop: 0, textAlign: "center", fontSize: "17px" }}>
-           Transform yours into an adorable Crochet Warplet.</p>
+           Transform yours into Clawpet.</p>
         {context?.user ? (
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 0 }}>
             <span style={{ margin: 6 }}>
@@ -727,7 +727,7 @@ export default function Home() {
                   }
                 }}
               >
-                <TransactionButton text="Mint Crochet Warplet" disabled={!canMint} />
+                <TransactionButton text="Mint Clawpet" disabled={!canMint} />
               </Transaction>
               {mintError ? (
                 <p style={{ color: "red", textAlign: "center", marginTop: 8 }}>{mintError}</p>
@@ -765,9 +765,9 @@ export default function Home() {
                 {TRANSFORM_MESSAGES[transformStepIdx ?? 0]}
               </p>
               <p style={{ marginTop: 8, fontSize: 13, color: "#555" }}>
-                We are crocheting your Warplet, it make take a few minutes, be patient.<br />
+                We are transforming your Warplet, it make take a few minutes, be patient.<br />
                 A Warplet can only be transformed once.<br />
-                You can close the app, we will refresh wity your Crochet Warplet when we are ready.
+                You can close the app, we will refresh with your Clawpet when we are ready.
               </p>
             </div>
           </div>
