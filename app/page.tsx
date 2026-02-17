@@ -40,8 +40,8 @@ type MiniKitUserWithLegacyPfp = {
 
 const CONTRACT_ADDRESS =
   (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`) ??
-  ("0x991f453f3f953E457aa7B9f37Fb59c86BA49bb3D" as `0x${string}`);
-const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 84532);
+  ("0x29c60B24eF9ce57a95fE552EDF80F440F7f0B6fc" as `0x${string}`);
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 8453);
 const MINT_VALUE = parseEther("0.00037");
 const VIEW_TOKEN_BASE_URL =
   CHAIN_ID === 8453

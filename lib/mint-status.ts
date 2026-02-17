@@ -4,7 +4,7 @@ import { base, baseSepolia } from "viem/chains";
 const CONTRACT_ADDRESS =
   process.env.CONTRACT_ADDRESS as `0x${string}` | undefined;
 
-const chainId = Number(process.env.CHAIN_ID ?? 84532);
+const chainId = Number(process.env.CHAIN_ID ?? 8453);
 const chain = chainId === base.id ? base : baseSepolia;
 const defaultRpc =
   chainId === base.id ? "https://mainnet.base.org" : "https://sepolia.base.org";

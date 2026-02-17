@@ -28,7 +28,7 @@ export const minikitConfig = {
     splashBackgroundColor: "#6A3CFF",
     buttonTitle: "Transform your Warplet",
     homeUrl: URL,
-    webhookUrl: `https://api.neynar.com/f/app/f93e2ac5-db70-4d0a-b69b-8a25fc81c573/event`,
+    webhookUrl: `https://api.neynar.com/f/app/8bd3ba67-b0fb-488e-a7a2-aa98bffde018/event`,
     primaryCategory: "social",
     tags: [`warplet`, `pfp`, `farcaster`, `clawplet`, `OpenClaw`],
     screenshotUrls: [

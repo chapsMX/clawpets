@@ -36,7 +36,7 @@ export async function POST(req: Request) {
 
     // Always use server-side config to avoid mismatches
     const contractAddress = getAddress(requireEnv("CONTRACT_ADDRESS"));
-    const chainId = toBigIntSafe(process.env.CHAIN_ID || 84532); // default Base Sepolia
+    const chainId = toBigIntSafe(process.env.CHAIN_ID || 8453); // default Base mainnet
 
     if (!cid || typeof cid !== "string") {
       return NextResponse.json({ error: "cid is required" }, { status: 400 });
