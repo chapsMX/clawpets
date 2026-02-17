@@ -518,11 +518,16 @@ export default function Home() {
   // This will show the native "Add app" dialog in supported hosts (e.g. Warpcast/Base App).
   useEffect(() => {
     if (!isFarcasterSdkReady) return;
-    let cancelled = false;
     (async () => {
       try {
         // If context is available and the app is already added, skip prompting.
-        const ctx = (farcasterMiniAppSdk as any)?.context;
+        const ctx = farcasterMiniAppSdk.context as
+          | {
+              client?: {
+                added?: boolean;
+              };
+            }
+          | undefined;
         if (ctx?.client?.added) {
           return;
         }
@@ -532,9 +537,6 @@ export default function Home() {
         console.warn("[miniapp] addMiniApp auto-prompt failed (safe to ignore in dev)", error);
       }
     })();
-    return () => {
-      cancelled = true;
-    };
   }, [isFarcasterSdkReady]);
 
   useEffect(() => {
