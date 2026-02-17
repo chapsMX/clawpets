@@ -16,7 +16,7 @@
 | **Frontend** | Next.js (App Router) + React + CSS Modules. Onchain UX with `@coinbase/onchainkit` (MiniKit for Farcaster context, TransactionButton for txs). |
 | **Client state** | React hooks (`useState`, `useMemo`, `useEffect`). MiniKit context supplies the authenticated fid. |
 | **Backend / API Routes** | Next.js route handlers under `app/api/**`: `warplet/[fid]`, `user/[fid]`, `mint/sign`. Planned additions: `warplet/reinterpret`, Pinata upload proxy. |
-| **On-chain** | `amgWarplets.sol` (ERC-721 Enumerable, tokenId=fid, one mint per wallet, mint price 0.0005 ETH) currently on Base Sepolia. `viem` powers RPC reads/signing. |
+| **On-chain** | `amgWarplets.sol` (ERC-721 Enumerable, tokenId=fid, one mint per wallet, mint price 0.00037 ETH) currently on Base Sepolia. `viem` powers RPC reads/signing. |
 | **Infra & services** | Base RPC (public or custom via `BASE_RPC_URL`), Neynar for social data, Pinata for IPFS storage, Google Gemini (planned) for image reinterpretation. |
 
 ---

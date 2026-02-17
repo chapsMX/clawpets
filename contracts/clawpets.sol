@@ -34,7 +34,7 @@ contract Clawplets is ERC721Enumerable, Ownable, Pausable {
         ERC721("Clawplets ", "CLAWPlet")
         Ownable(initialOwner)
     {
-        mintPrice = 0.0005 ether;
+        mintPrice = 0.00037 ether;
         ipfsGatewayBase = "ipfs://";
     }
 

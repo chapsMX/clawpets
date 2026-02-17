@@ -40,12 +40,12 @@ type MiniKitUserWithLegacyPfp = {
 
 const CONTRACT_ADDRESS =
   (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`) ??
-  ("0x0B3B450766CA297816f81F44B2902F87C1cE521a" as `0x${string}`);
-const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 8453);
-const MINT_VALUE = parseEther("0.0005");
+  ("0xda771a64b2880fdf3dfa718be2343b7d2f51490e" as `0x${string}`);
+const CHAIN_ID = Number(process.env.NEXT_PUBLIC_CHAIN_ID ?? 84532);
+const MINT_VALUE = parseEther("0.00037");
 const VIEW_TOKEN_BASE_URL =
   CHAIN_ID === 8453
-    ? "https://rarible.com/token/base"
+    ? "https://opensea.io/item/base"
     : "https://testnet.rarible.com/token/base";
 const TX_EXPLORER_BASE_URL =
   CHAIN_ID === 8453
@@ -700,7 +700,7 @@ export default function Home() {
                       textAlign: "center",
                     }}
                   >
-                    View on Rarible
+                    View Clawplet on OpenSea
                   </a>
                 ) : null}
                 <button
@@ -914,7 +914,7 @@ export default function Home() {
                         fontSize: 14,
                       }}
                     >
-                      View on Rarible
+                      View Clawplet on OpenSea
                     </a>
                   </div>
                 ) : null}
