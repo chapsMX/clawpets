@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
         version: minikitConfig.miniapp.version,
         imageUrl: minikitConfig.miniapp.heroImageUrl,
         button: {
-          title: `Transform your Warplet`,
+          title: `Transform your Warplet -> 🦞`,
           action: {
-            name: `Transform your Warplet`,
+            name: `Transform your Warplet -> 🦞`,
             type: "launch_miniapp",
           },
         },
