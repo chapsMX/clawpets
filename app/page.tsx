@@ -125,7 +125,10 @@ export default function Home() {
   const wasTransformingRef = useRef(false);
   const shareTxHashRef = useRef<string | null>(null);
   const [isFarcasterSdkReady, setIsFarcasterSdkReady] = useState(false);
+  const [isAddingMiniApp, setIsAddingMiniApp] = useState(false);
+  const [addMiniAppError, setAddMiniAppError] = useState<string | null>(null);
   const legacyContextUser = (context?.user as MiniKitUserWithLegacyPfp | undefined) ?? null;
+  const clientAdded = (context?.client as { added?: boolean } | undefined)?.added ?? false;
   const contextPfpUrl = resolveContextPfpUrl(legacyContextUser);
   const displayPfpUrl = profilePfpUrl ?? contextPfpUrl;
 
@@ -430,6 +433,34 @@ export default function Home() {
     });
   }, [userFid, mintedTokenId, mintTxHash, shareMintToFarcaster]);
 
+  const handleAddMiniApp = useCallback(async () => {
+    if (!isFarcasterSdkReady) {
+      setAddMiniAppError("Farcaster SDK not ready.");
+      return;
+    }
+    setIsAddingMiniApp(true);
+    setAddMiniAppError(null);
+    try {
+      await farcasterMiniAppSdk.actions.addMiniApp();
+      console.log("[addMiniApp] User added Clawpets to their apps");
+    } catch (error: unknown) {
+      const err = error as { name?: string; message?: string };
+      if (err?.name === "RejectedByUser") {
+        setAddMiniAppError(null);
+        return;
+      }
+      if (err?.name === "InvalidDomainManifestJson") {
+        setAddMiniAppError("App domain must match manifest. Deploy to your production domain.");
+        return;
+      }
+      const message = err?.message ?? "Could not add app";
+      setAddMiniAppError(message);
+      console.error("[addMiniApp] failed", error);
+    } finally {
+      setIsAddingMiniApp(false);
+    }
+  }, [isFarcasterSdkReady]);
+
   const handleTransform = useCallback(async () => {
     if (!userFid) {
       setTransformError("Missing user fid");
@@ -513,31 +544,6 @@ export default function Home() {
       cancelled = true;
     };
   }, []);
-
-  // Auto-prompt users to add the Mini App once the Farcaster SDK is ready.
-  // This will show the native "Add app" dialog in supported hosts (e.g. Warpcast/Base App).
-  useEffect(() => {
-    if (!isFarcasterSdkReady) return;
-    (async () => {
-      try {
-        // If context is available and the app is already added, skip prompting.
-        const ctx = farcasterMiniAppSdk.context as
-          | {
-              client?: {
-                added?: boolean;
-              };
-            }
-          | undefined;
-        if (ctx?.client?.added) {
-          return;
-        }
-        await farcasterMiniAppSdk.actions.addMiniApp();
-      } catch (error: unknown) {
-        // Ignore expected errors in dev or if the user rejects the prompt.
-        console.warn("[miniapp] addMiniApp auto-prompt failed (safe to ignore in dev)", error);
-      }
-    })();
-  }, [isFarcasterSdkReady]);
 
   useEffect(() => {
     const fid = userFid;
@@ -665,6 +671,34 @@ export default function Home() {
         ) : (
           <p style={{ marginTop: 4 }}>User context unavailable. Open inside a Farcaster Mini App.</p>
         )}
+          {isFarcasterSdkReady && !clientAdded ? (
+            <div style={{ marginTop: 8, marginBottom: 4, width: "100%" }}>
+              <button
+                type="button"
+                onClick={handleAddMiniApp}
+                disabled={isAddingMiniApp}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 8,
+                  border: "1px solid #6A3CFF",
+                  background: "transparent",
+                  color: "#6A3CFF",
+                  fontWeight: 600,
+                  cursor: isAddingMiniApp ? "wait" : "pointer",
+                  opacity: isAddingMiniApp ? 0.7 : 1,
+                  width: "100%",
+                  fontSize: 14,
+                }}
+              >
+                {isAddingMiniApp ? "Adding…" : "Add Clawpets to my apps"}
+              </button>
+              {addMiniAppError ? (
+                <p style={{ margin: "6px 0 0", fontSize: 12, color: "#c00", textAlign: "center" }}>
+                  {addMiniAppError}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
           <p style={{ margin: 6, textAlign: "center", fontSize: "14px" }}>
           Limited to FIDs with a minted Warplet.
         </p>
