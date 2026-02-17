@@ -10,9 +10,9 @@ export async function GET() {
   
     return Response.json({
       accountAssociation: {
-        "header": "eyJmaWQiOjIwNzAxLCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4N2VFMEI2RWUwRUFjMzUxNzBGMzgxNjFiMTNjZGYxNjY5ZWE0ZTUzZSJ9",
-        "payload": "eyJkb21haW4iOiJjcm9jaGV0d2FycGxldHMubWluaWFwcHMuem9uZSJ9",
-        "signature": "kQZjU9zF1VFCiZJXzYB03wupuctMhG4bXQJ7ZcUQyHJYMUU0aCm0eW3Yux9wkXZYSurLdRwcsPNVJC8Hjj/ZBhw=",
+      "header": "eyJmaWQiOjIwNzAxLCJ0eXBlIjoiY3VzdG9keSIsImtleSI6IjB4ZDQwNDg2MjIwNDMzOWJCNDJDNWMzNTVjMzcxMWViYzE2MTM1ZjllZSJ9",
+      "payload": "eyJkb21haW4iOiJjbGF3cGxldHMubWluaWFwcHMuem9uZSJ9",
+      "signature": "/geYZrFm/5Dx66dHqlClAGG8nXmTyKr87jNaiQhXx+osPgvKy3J3Mfe2+vxUow8cuky2s8wE5R4tTUWS6SKe5xs=",
       },
       baseBuilder: {
         ownerAddress: "0x58F521068A39a5e675ACc7Edd7E269f576867691",
@@ -25,6 +25,7 @@ export async function GET() {
         iconUrl: `${URL}/icon.png`,
         splashImageUrl: `${URL}/splashnt.png`,
         splashBackgroundColor: "#6A3CFF",
+        buttonTitle: "Transform your Warplet into a Clawplet",
         homeUrl: URL,
         webhookUrl: `https://api.neynar.com/f/app/f93e2ac5-db70-4d0a-b69b-8a25fc81c573/event`,
         primaryCategory: "social",
@@ -35,7 +36,7 @@ export async function GET() {
      ],
         heroImageUrl: `${URL}/heroRectangle.png`,
         tagline: "Warplet to Clawplet",
-        ogTitle: "🦞 Clawplets 🦞",
+        ogTitle: "Clawplets",
         ogDescription: "Transform your Warplet into a Clawplet",
         ogImageUrl: `${URL}/hero.png`,
       },

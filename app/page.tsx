@@ -387,8 +387,9 @@ export default function Home() {
       try {
         const shareUrl = `${shareBaseUrl}/share-mint/${embedFid}`;
         const shareText =
-          `♻️ I just transformed my Warplet into a Clawplet #${displayTokenId} 🦞\n` +
-          `Transform and mint yours! 🚀`;
+          `♻️ I just transformed my Warplet into Clawplet #${displayTokenId}\n` +
+          `🦞 Transform and mint yours 🦞\n` +
+          `Only 0.00037 ETH`;
         console.log("[share] invoking composeCast", {
           displayTokenId,
           embedFid,
