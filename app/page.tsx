@@ -124,6 +124,7 @@ export default function Home() {
   const [warpletImageReloadToken, setWarpletImageReloadToken] = useState(0);
   const wasTransformingRef = useRef(false);
   const shareTxHashRef = useRef<string | null>(null);
+  const hasAutoPromptedAddMiniAppRef = useRef(false);
   const [isFarcasterSdkReady, setIsFarcasterSdkReady] = useState(false);
   const [isAddingMiniApp, setIsAddingMiniApp] = useState(false);
   const [addMiniAppError, setAddMiniAppError] = useState<string | null>(null);
@@ -544,6 +545,42 @@ export default function Home() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (
+      !isFarcasterSdkReady ||
+      clientAdded ||
+      hasAutoPromptedAddMiniAppRef.current
+    ) {
+      return;
+    }
+    hasAutoPromptedAddMiniAppRef.current = true;
+    setIsAddingMiniApp(true);
+    setAddMiniAppError(null);
+    farcasterMiniAppSdk.actions
+      .addMiniApp()
+      .then(() => {
+        console.log("[addMiniApp] User added Clawpets to their apps");
+      })
+      .catch((error: unknown) => {
+        const err = error as { name?: string; message?: string };
+        if (err?.name === "RejectedByUser") {
+          setAddMiniAppError(null);
+          return;
+        }
+        if (err?.name === "InvalidDomainManifestJson") {
+          setAddMiniAppError(
+            "App domain must match manifest. Deploy to your production domain."
+          );
+          return;
+        }
+        setAddMiniAppError(err?.message ?? "Could not add app");
+        console.error("[addMiniApp] auto-prompt failed", error);
+      })
+      .finally(() => {
+        setIsAddingMiniApp(false);
+      });
+  }, [isFarcasterSdkReady, clientAdded]);
 
   useEffect(() => {
     const fid = userFid;
