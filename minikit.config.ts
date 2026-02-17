@@ -24,7 +24,7 @@ export const minikitConfig = {
     description: "Transform your Warplet into a Clawplet",
     iconUrl: `${URL}/icon.png`,
     splashImageUrl: `${URL}/splashnt.png`,
-    imageUrl: `${URL}/hero.png`,
+    imageUrl: `${URL}/heroRectangle.png`,
     splashBackgroundColor: "#6A3CFF",
     buttonTitle: "Transform your Warplet",
     homeUrl: URL,
