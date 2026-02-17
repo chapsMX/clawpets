@@ -242,7 +242,7 @@ export default function Home() {
     }
     const tokenId = mintedTokenId ?? userFid ?? null;
     if (!tokenId) return null;
-    return `${VIEW_TOKEN_BASE_URL}/${CONTRACT_ADDRESS}:${tokenId}`;
+    return `${VIEW_TOKEN_BASE_URL}/${CONTRACT_ADDRESS}/${tokenId}`;
   }, [mintedTokenId, userFid]);
   // canTransform: user has warplet image, hasn't transformed yet, and not currently transforming
   // Note: hasMinted refers to the Clawplet NFT, not the original Warplet, so we don't check it here
