@@ -514,6 +514,29 @@ export default function Home() {
     };
   }, []);
 
+  // Auto-prompt users to add the Mini App once the Farcaster SDK is ready.
+  // This will show the native "Add app" dialog in supported hosts (e.g. Warpcast/Base App).
+  useEffect(() => {
+    if (!isFarcasterSdkReady) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        // If context is available and the app is already added, skip prompting.
+        const ctx = (farcasterMiniAppSdk as any)?.context;
+        if (ctx?.client?.added) {
+          return;
+        }
+        await farcasterMiniAppSdk.actions.addMiniApp();
+      } catch (error: unknown) {
+        // Ignore expected errors in dev or if the user rejects the prompt.
+        console.warn("[miniapp] addMiniApp auto-prompt failed (safe to ignore in dev)", error);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [isFarcasterSdkReady]);
+
   useEffect(() => {
     const fid = userFid;
     if (!fid) return;
