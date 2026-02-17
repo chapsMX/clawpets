@@ -35,7 +35,7 @@ export async function GET() {
           `${URL}/ss_01.jpg`,
           `${URL}/ss_02.jpg`
      ],
-        heroImageUrl: `${URL}/heroRectangle.png`,
+        heroImageUrl: `${URL}/launcher.png`,
         tagline: "Warplet to Clawplet",
         ogTitle: "Clawplets",
         ogDescription: "Transform your Warplet into a Clawplet",

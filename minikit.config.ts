@@ -27,7 +27,7 @@ export const minikitConfig = {
     imageUrl: `${ROOT_URL}/launcher.png`,
     splashBackgroundColor: "#e9ca71",
     buttonTitle: "Transform your Warplet",
-    homeUrl: URL,
+    homeUrl: ROOT_URL,
     webhookUrl: `https://api.neynar.com/f/app/8bd3ba67-b0fb-488e-a7a2-aa98bffde018/event`,
     primaryCategory: "social",
     tags: [`warplet`, `pfp`, `farcaster`, `clawplet`, `OpenClaw`],
@@ -35,7 +35,7 @@ export const minikitConfig = {
       `${URL}/ss_01.jpg`,
       `${URL}/ss_02.jpg`
  ],
- heroImageUrl: `${URL}/heroRectangle.png`,
+ heroImageUrl: `${ROOT_URL}/launcher.png`,
  tagline: "Warplet to Clawplet",
  ogTitle: "Clawplets",
  ogDescription: "Transform your Warplet into a Clawplet",
