@@ -19,7 +19,7 @@ export const minikitConfig = {
   },
   miniapp: {
     version: "1",
-    name: "🦞 Clawplets 🦞",  
+    name: "Clawplets",  
     subtitle: "Your Warplet in Clawplet",
     description: "Transform your Warplet into a Clawplet",
     iconUrl: `${URL}/icon.png`,
