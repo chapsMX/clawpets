@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     const file = fileFromBase64({
       imageBase64: generated.data,
       mimeType: generated.mimeType,
-      name: `clawpet-${fid}.png`,
+      name: `clawplet-${fid}.png`,
     });
     const { cid, gatewayUrl } = await uploadFileToPinata(file);
 

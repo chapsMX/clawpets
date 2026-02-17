@@ -19,24 +19,24 @@ export const minikitConfig = {
   },
   miniapp: {
     version: "1",
-    name: "🦞 Clawpets 🦞",
-    subtitle: "Your Warplet in Clawpet",
-    description: "Transform your Warplet into a Clawpet",
+    name: "🦞 Clawplets 🦞",
+    subtitle: "Your Warplet in Clawplet",
+    description: "Transform your Warplet into a Clawplet",
     iconUrl: `${ROOT_URL}/icon.png`,
     splashImageUrl: `${ROOT_URL}/splashnt.png`,
     splashBackgroundColor: "#6A3CFF",
     homeUrl: ROOT_URL,
     webhookUrl: `https://api.neynar.com/f/app/f93e2ac5-db70-4d0a-b69b-8a25fc81c573/event`,
     primaryCategory: "social",
-    tags: [`warplet`, `pfp`, `farcaster`, `clawpet`, `OpenClaw`],
-    screenshotUrls: [
+      tags: [`warplet`, `pfp`, `farcaster`, `clawplet`, `OpenClaw`],
+      screenshotUrls: [
       `${ROOT_URL}/ss_01.jpg`,
       `${ROOT_URL}/ss_02.jpg`
  ],
     heroImageUrl: `${ROOT_URL}/heroRectangle.png`,
-    tagline: "Warplet to Clawpet",
-    ogTitle: "🦞 Clawpets 🦞",
-    ogDescription: "Transform your Warplet into a Clawpet",
+    tagline: "Warplet to Clawplet",
+    ogTitle: "🦞 Clawplets 🦞",
+    ogDescription: "Transform your Warplet into a Clawplet",
     ogImageUrl: `${ROOT_URL}/hero.png`,
   },
 } as const;

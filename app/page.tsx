@@ -245,7 +245,7 @@ export default function Home() {
     return `${VIEW_TOKEN_BASE_URL}/${CONTRACT_ADDRESS}:${tokenId}`;
   }, [mintedTokenId, userFid]);
   // canTransform: user has warplet image, hasn't transformed yet, and not currently transforming
-  // Note: hasMinted refers to the Clawpet NFT, not the original Warplet, so we don't check it here
+  // Note: hasMinted refers to the Clawplet NFT, not the original Warplet, so we don't check it here
   const canTransform =
     Boolean(warpletImage) &&
     !warpletError &&
@@ -278,7 +278,7 @@ export default function Home() {
         notTransformed: warpletStatus === null || !warpletStatus.hasTransformed,
         notTransforming: !isTransforming,
         notLoading: !isStatusLoading,
-        // Note: hasMinted refers to Clawpet NFT, not relevant for transform button
+        // Note: hasMinted refers to Clawplet NFT, not relevant for transform button
         hasMintedClawpet: warpletStatus?.hasMinted ?? false,
       },
     });
@@ -387,7 +387,7 @@ export default function Home() {
       try {
         const shareUrl = `${shareBaseUrl}/share-mint/${embedFid}`;
         const shareText =
-          `♻️ I just transformed my Warplet into a Clawpet #${displayTokenId} 🦞\n` +
+          `♻️ I just transformed my Warplet into a Clawplet #${displayTokenId} 🦞\n` +
           `Transform and mint yours! 🚀`;
         console.log("[share] invoking composeCast", {
           displayTokenId,
@@ -614,9 +614,9 @@ export default function Home() {
           <p style={{ marginTop: 0 }}>Loading Warplet...</p>
         ) : null}
 
-        <h1 className={styles.title} style={{ marginTop: 0 }}>🦞 Clawpets 🦞</h1>
+        <h1 className={styles.title} style={{ marginTop: 0 }}>🦞 Clawplets 🦞</h1>
         <p style={{ marginTop: 0, textAlign: "center", fontSize: "17px" }}>
-           Transform yours into Clawpet.</p>
+           Transform your Warplet into a Clawplet.</p>
         {context?.user ? (
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 0 }}>
             <span style={{ margin: 6 }}>
@@ -668,7 +668,7 @@ export default function Home() {
             </button>
           ) : !warpletStatus?.hasMinted && warpletStatus?.hasTransformed ? (
             <p style={{ margin: 0, fontSize: 14, color: "#2ecc71" }}>
-              Crocheted Warplet ready. Proceed to mint!
+              Warplet has been transformed into a Clawplet. Proceed to mint!
             </p>
           ) : null}
           {warpletStatus?.hasMinted && warpletStatus?.hasTransformed ? (
@@ -771,7 +771,7 @@ export default function Home() {
                   }
                 }}
               >
-                <TransactionButton text="Mint Clawpet" disabled={!canMint} />
+                <TransactionButton text="Mint Clawplet" disabled={!canMint} />
               </Transaction>
               {mintError ? (
                 <p style={{ color: "red", textAlign: "center", marginTop: 8 }}>{mintError}</p>
@@ -811,7 +811,7 @@ export default function Home() {
               <p style={{ marginTop: 8, fontSize: 13, color: "#555" }}>
                 We are transforming your Warplet, it make take a few minutes, be patient.<br />
                 A Warplet can only be transformed once.<br />
-                You can close the app, we will refresh with your Clawpet when we are ready.
+                You can close the app, we will refresh with your Clawplet once it has been transformed.
               </p>
             </div>
           </div>
