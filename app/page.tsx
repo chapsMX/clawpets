@@ -739,6 +739,43 @@ export default function Home() {
           <p style={{ margin: 6, textAlign: "center", fontSize: "14px" }}>
           Limited to FIDs with a minted Warplet.
         </p>
+        {/* NUEVA WALLET CONNECTION */}
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 4,
+          }}
+        >
+          <Wallet>
+  <ConnectWallet>
+    <Avatar className="h-6 w-6" />
+    <Name />
+  </ConnectWallet>
+  <WalletDropdown>
+    <Identity
+      className="px-4 pt-3 pb-2"
+      hasCopyAddressOnClick
+    >
+      <Avatar />
+      <Name />
+      <Address />
+      <EthBalance />
+    </Identity>
+    <WalletDropdownBasename />
+    <WalletDropdownLink
+      icon="wallet"
+      href="https://keys.coinbase.com"
+    >
+      Wallet
+    </WalletDropdownLink>
+    <WalletDropdownFundLink />
+    <WalletDropdownDisconnect />
+  </WalletDropdown>
+</Wallet>
+        </div>
+        {/* NUEVA WALLET CONNECTION */}
         <div style={{ display: "flex", gap: 4, justifyContent: "center", marginTop: 2, marginBottom: 10, flexDirection: "column", alignItems: "center" }}>
           {!address ? (
             <p style={{ margin: 0, fontSize: 14, color: "#555" }}>
@@ -1024,65 +1061,7 @@ export default function Home() {
             </div>
           </div>
         ) : null}
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: 16,
-          }}
-        >
-          <Wallet>
-  <ConnectWallet>
-    <Avatar className="h-6 w-6" />
-    <Name />
-  </ConnectWallet>
-  <WalletDropdown>
-    <Identity
-      className="px-4 pt-3 pb-2"
-      hasCopyAddressOnClick
-    >
-      <Avatar />
-      <Name />
-      <Address />
-      <EthBalance />
-    </Identity>
-    <WalletDropdownBasename />
-    <WalletDropdownLink
-      icon="wallet"
-      href="https://keys.coinbase.com"
-    >
-      Wallet
-    </WalletDropdownLink>
-    <WalletDropdownFundLink />
-    <WalletDropdownDisconnect />
-  </WalletDropdown>
-</Wallet>
-{/*           <Wallet>
-            <ConnectWallet
-              disconnectedLabel="Connect wallet"
-              className={styles.connectWalletButton}
-            >
-              <Avatar className={styles.walletAvatar} />
-              <Name className={styles.walletName} />
-            </ConnectWallet>
-            <WalletDropdown>
-              <Identity
-                className={styles.walletIdentity}
-                hasCopyAddressOnClick
-              >
-                <Avatar />
-                <Name />
-                <Address className={styles.walletAddress} />
-              </Identity>
-              <WalletDropdownLink icon="wallet" href="https://keys.coinbase.com">
-                Wallet
-              </WalletDropdownLink>
-              <WalletDropdownDisconnect />
-            </WalletDropdown>
-          </Wallet> */}
-        </div>
-
+      
       </div>
     </div>
   );
