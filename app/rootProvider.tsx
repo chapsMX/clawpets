@@ -21,11 +21,11 @@ export function RootProvider({ children }: { children: ReactNode }) {
           preference: "all",
         }, */
       }}
-/*       miniKit={{
+      miniKit={{
         enabled: true,
         autoConnect: true,
         notificationProxyUrl: undefined,
-      }} */
+      }}
     >
       {children}
     </OnchainKitProvider>
