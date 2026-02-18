@@ -16,10 +16,10 @@ export function RootProvider({ children }: { children: ReactNode }) {
           logo: "/splashnt.png",
           mode: "auto",
         },
-        wallet: {
+/*         wallet: {
           display: "modal",
           preference: "all",
-        },
+        }, */
       }}
       miniKit={{
         enabled: true,
