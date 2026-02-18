@@ -16,16 +16,16 @@ export function RootProvider({ children }: { children: ReactNode }) {
           logo: "/splashnt.png",
           mode: "auto",
         },
-        wallet: {
+/*         wallet: {
           display: "modal",
           preference: "all",
-        },
+        }, */
       }}
-      miniKit={{
+/*       miniKit={{
         enabled: true,
         autoConnect: true,
         notificationProxyUrl: undefined,
-      }}
+      }} */
     >
       {children}
     </OnchainKitProvider>
